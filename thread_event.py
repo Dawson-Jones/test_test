@@ -1,6 +1,10 @@
 import threading
 from time import sleep
 
+"""
+threading.Event: 'wait' for the same Event run 'set' function
+threading.Thread: 'join' will blocking till the thread operation ending
+"""
 
 def test(n, event):
     print('Thread %s is ready' % n)

@@ -7,20 +7,20 @@ g_num = 0
 def test1(num):
     global g_num
     for i in range(num):
-        metux.acquire()
+        mutex.acquire()
         g_num += 1
-        # metux.release()
+        mutex.release()
 
 
 def test2(num):
     global g_num
     for i in range(num):
-        metux.acquire()
+        mutex.acquire()
         g_num += 1
-        # metux.release()
+        mutex.release()
 
 
-metux = threading.Lock()
+mutex = threading.Lock()
 
 if __name__ == '__main__':
     start = time.perf_counter()
