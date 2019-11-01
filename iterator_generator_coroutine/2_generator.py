@@ -29,7 +29,6 @@ import time
 def work1():
     current = 0
     while True:
-        print('----work1----')
         yield f'work1 {current}th called'
         current += 1
 
@@ -37,7 +36,6 @@ def work1():
 def work2():
     current = 0
     while True:
-        print('----work2----')
         yield f'work2 {current}th called'
         current += 1
 
