@@ -13,13 +13,6 @@ class TiebaSpider(object):
         }
         self.project_path = os.path.split(sys.argv[0])[0]
 
-    def get_url_list(self):
-        # url_list = list()
-        # for i in range(10):
-        #     url_list.append(self.url.format(i * 50))
-        # return url_list
-        return [self.url.format(i * 50) for i in range(10)]
-
     def save_html(self, response, page_num):
         file_path = f'{self.name}吧-第{page_num}页.html'
         target_path = os.path.join(self.project_path, self.name)
@@ -33,7 +26,7 @@ class TiebaSpider(object):
         return response.content.decode()
 
     def run(self):
-        url_list = self.get_url_list()
+        url_list = [self.url.format(i * 50) for i in range(10)]
         for url in url_list:
             response = self.parse_url(url)
             page_num = url_list.index(url) + 1
