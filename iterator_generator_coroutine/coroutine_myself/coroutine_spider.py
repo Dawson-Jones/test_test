@@ -16,14 +16,18 @@ async def main(page):
     print('send http request')
     # await asyncio.sleep(1)
     # await parse_url(per_url, page)
-    ret = await asyncio.create_task(parse_url(per_url, page))
-    print('writing file', ret)
+    ret = await asyncio.create_task(parse_url(per_url))
+    print('writing file')
+    await asyncio.create_task(save_file(page, ret))
+    print('finished', page)
 
 
-async def parse_url(per_url, page_num):
+async def parse_url(per_url):
     response = requests.get(url=per_url, headers=headers)
-    result = response.content.decode()
+    return response.content.decode()
 
+
+async def save_file(page_num, result):
     file_name = f'lol-page{page_num}.html'
     target_path = os.path.join(project_path, 'lol')
     file_path = os.path.join(target_path, file_name)
@@ -31,7 +35,6 @@ async def parse_url(per_url, page_num):
         os.makedirs(target_path)
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(result)
-    return f'OK {page_num}'
 
 
 def do_something():
