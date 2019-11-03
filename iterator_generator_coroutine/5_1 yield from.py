@@ -1,51 +1,3 @@
-# 字符串
-astr = 'ABC'
-# 列表
-alist = [1, 2, 3]
-# 字典
-adict = {"name": "wangbm", "age": 18}
-# 生成器
-agen = (i for i in range(4, 8))
-
-
-def gen(*args, **kw):
-    for item in args:
-        for i in item:
-            yield i
-
-
-new_list = gen(astr, alist, adict, agen)
-print(list(new_list))
-# ['A', 'B', 'C', 1, 2, 3, 'name', 'age', 4, 5, 6, 7]
-
-
-# ------------------------------------------------------
-
-
-# yield from
-# 字符串
-astr = 'ABC'
-# 列表
-alist = [1, 2, 3]
-# 字典
-adict = {"name": "wangbm", "age": 18}
-# 生成器
-agen = (i for i in range(4, 8))
-
-
-def gen(*args, **kw):
-    for item in args:
-        yield from item
-
-
-new_list = gen(astr, alist, adict, agen)
-print(list(new_list))
-
-
-# ['A', 'B', 'C', 1, 2, 3, 'name', 'age', 4, 5, 6, 7]
-
-
-# ===========================================
 # 子生成器
 def average_gen():
     total = 0
@@ -68,7 +20,7 @@ def proxy_gen():
     while True:
         # 只有子生成器要结束（return）了，yield from左边的变量才会被赋值，后面的代码才会执行。
         total, count, average = yield from average_gen()
-        print("计算完毕！！\n总共传入 {} 个数值， 总和：{}，平均数：{}".format(count, total, average))
+        print(f"计算完毕！！\n总共传入 {count} 个数值， 总和：{total}，平均数：{average}")
 
 
 # 调用方

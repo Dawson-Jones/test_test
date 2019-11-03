@@ -15,9 +15,10 @@ async def main(page):
     per_url = url.format(page * 50)
     print('send http request')
     # await asyncio.sleep(1)
-    # await parse_url(per_url, page)
+    # ret = await parse_url(per_url)
     ret = await asyncio.create_task(parse_url(per_url))
     print('writing file')
+    # await save_file(page, ret)
     await asyncio.create_task(save_file(page, ret))
     print('finished', page)
 
@@ -37,17 +38,13 @@ async def save_file(page_num, result):
         f.write(result)
 
 
-def do_something():
+if __name__ == '__main__':
+    start = time.perf_counter()
+    # asyncio.run(main())
     tasks = [main(i) for i in range(10)]
     # 获取一个事件循环对象
     loop = asyncio.get_event_loop()
     # 在事件循环中执行tasks列表
     loop.run_until_complete(asyncio.wait(tasks))
-
-
-if __name__ == '__main__':
-    start = time.perf_counter()
-    # asyncio.run(main())
-    do_something()
     end = time.perf_counter()
     print(f'用时: {end - start}')  # 15.6  14  后: 14.7
