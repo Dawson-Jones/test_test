@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<users>
+    <user id='1'>
+        <username>Dowson Jones</username>
+        <email>jeedq@qq.com</email>
+        <age>23</age>
+        <address>
+            <tag>腾讯公司</tag>
+        </address>
+    </user>
+    <user id='2'>
+        <username>Dobby</username>
+        <email>957360688@qq.com</email>
+        <age>22</age>
+    </user>
+</users>

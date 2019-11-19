@@ -15,11 +15,11 @@ async def main(page):
     per_url = url.format(page * 50)
     print('send http request')
     # await asyncio.sleep(1)
-    # ret = await parse_url(per_url)
-    ret = await asyncio.create_task(parse_url(per_url))
+    ret = await parse_url(per_url)
+    # ret = await asyncio.create_task(parse_url(per_url))
     print('writing file')
-    # await save_file(page, ret)
-    await asyncio.create_task(save_file(page, ret))
+    await save_file(page, ret)
+    # await asyncio.create_task(save_file(page, ret))
     print('finished', page)
 
 
