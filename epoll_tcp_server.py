@@ -39,12 +39,10 @@ def service_client(new_socket, request):
         new_socket.send(response.encode("utf-8"))
     else:
         response_body = f.read()
-
         response_header = "HTTP/1.1 200 OK\r\n"
         response_header += "Content-Length:%d\r\n" % len(response_body)
         response_header += "\r\n"
         response = response_header.encode("utf-8") + response_body
-
         new_socket.send(response)
     finally:
         f.close()
