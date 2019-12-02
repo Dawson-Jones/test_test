@@ -30,5 +30,15 @@ def test():
     return 'haha', 200
 
 
+@app.route('/plc')
+def test1():
+    return '1'
+
+
+@app.route('/pic_catcher/alive')
+def test2():
+    return 'hello world'
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
