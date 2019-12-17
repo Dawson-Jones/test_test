@@ -36,6 +36,12 @@ def main(data: dict):
             group.send(value)
         group.send(None)
 
+        """
+        不需要这一句, 是因为, 外层for循环重新迭代的时候, 新建grouper实例, 绑定到了原来的group变量上, 
+        前一个grouper实例(以及它创建的尚未终止的averager子生成器实例)被垃圾回收
+        """
+        # group.close()  # 原来没有, 加上去不变, 估计这样做可以做可以使得内存中的委派生成器减少, 不做的话大循环每一次都创建了一个委派生成器
+
     # print(results)
     report(results)
 
