@@ -23,8 +23,10 @@ def averager():
 # 委派生成器
 @coroutine
 def grouper(results, key):
+    """这个地方, 不用while True 会触发StopIteration异常, 不知道为什么"""
     while True:
         results[key] = yield from averager()
+    """子生成器抛出StopIteration异常, 会让委派生成器恢复运行, 并把value值返回给委派生成器, 那么最终value值到底给了哪一个委派生成器呢???"""
 
 # 调用方 
 def main(data: dict):
