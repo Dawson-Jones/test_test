@@ -1,4 +1,4 @@
-from coroutil import coroutine
+from .coroutil import coroutine
 from collections import namedtuple
 
 Result = namedtuple("Result", "count average")
