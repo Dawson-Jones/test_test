@@ -24,25 +24,47 @@ def averager():
 # 委派生成器
 # @coroutine
 def grouper(results, key):
-    """-> *** 这个地方, 不用while True 会触发StopIteration异常, 不知道为什么"""
-    """子生成器抛出StopIteration异常, 会让委派生成器恢复运行, 并把value值返回给委派生成器, 那么最终value值到底给了哪一个委派生成器呢???"""
+    """-> *** 这个地方, 不用while True 会触发StopIteration异常, 不知道为什么   ***答案: 魔改总结"""
+    """ Q: 子生成器抛出StopIteration异常, 会让委派生成器恢复运行, 并把value值返回给委派生成器, 那么最终value值到底给了哪一个委派生成器呢???
+        A: 猜测: 跟子生成器最近的那个 yield from 委派生成器, 因为恢复运行后, yield from 处理了这个异常, 并拿到了返回值
+    """
+    # while True:
+    results[key] = yield from averager()
+    print("grouper: ", results)
+    # yield from averager()
+    # return results
+
+
+# 第一个委派生成器
+def fst_gen(results, key):
     while True:
-        results[key] = yield from averager()
+        yield from grouper(results, key)
+        # print("fst: ", results)
+        """
+        魔改总结: 
+            每一个yield from 在结束的时候都会触发StopIteration异常, 所以用死循环不让他停止, 而yield from会处理StopIteration异常
+            所以, 在不加while True的情况下, 调用方需要对StopIteration进行处理, 也就是一开始做的try except
+
+        """
 
 
 # 调用方
 def main(data: dict):
     results = dict()
     for key, values in data.items():
-        group = grouper(results, key)
-        next(group)
+        # group = grouper(results, key)
+        # next(group)
+        fst = fst_gen(results, key)
+        next(fst)
 
         for value in values:
-            group.send(value)
+            # group.send(value)
+            fst.send(value)
 
         # ----------                 # \
         # try:                       # -
-        group.send(None)             # -> 如果使用except 捕获异常, 可以在grouper不使用 whlie
+        # group.send(None)             # -> 如果使用except 捕获异常, 可以在grouper不使用 whlie
+        fst.send(None)
         # except StopIteration:      # -
         #     pass                   # /
 
