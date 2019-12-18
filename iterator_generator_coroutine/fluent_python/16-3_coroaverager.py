@@ -13,8 +13,8 @@ def averager():
         count += 1
         average = total / count
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     """
     无装饰器
     coro_avg = averager()

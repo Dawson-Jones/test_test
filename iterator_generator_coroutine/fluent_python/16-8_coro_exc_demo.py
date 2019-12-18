@@ -1,7 +1,9 @@
 from coroutil import coroutine
 
+
 class DemoException(Exception):
     """demo异常"""
+
 
 @coroutine
 def demo_exc_handling():

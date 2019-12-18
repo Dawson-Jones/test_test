@@ -31,7 +31,8 @@ class SentenceIterator(object):
 
     def __iter__(self):
         pass
-    
+
+
 if __name__ == "__main__":
     s = Sentence("'The time has come,' the Walrus said,")
     for word in s:
