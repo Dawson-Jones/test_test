@@ -1,8 +1,15 @@
+"""
+inspection info: this inspection detects type errors in function call expressions.
+Due to dynamic dispatch and duck typing,  this is possible in a limited but useful number of cases.
+Types of function parameters can be specified in docstrings or in python3 function annotations.
+"""
+
+
 # 子生成器
 def average_gen():
-    total = 0
+    total = 0.0
     count = 0
-    average = 0
+    average = None
     while True:
         new_num = yield average
         if new_num is None:
