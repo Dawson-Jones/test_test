@@ -10,11 +10,12 @@ def download_one(cc):
     save_flag(image, cc.lower() + '.gif')
     return cc
 
+
 def download_many(cc_list):
     workers = min(MAX_WORKERS, len(cc_list))
     with futures.ThreadPoolExecutor(workers) as executor:
         res = executor.map(download_one, sorted(cc_list))
-    
+
     return len(list(res))
 
 

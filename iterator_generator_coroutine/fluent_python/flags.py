@@ -16,15 +16,18 @@ def save_flag(img, filename):
     path = os.path.join(DEST_DIR, filename)
     with open(path, 'wb') as fp:
         fp.write(img)
-    
+
+
 def get_flag(cc):
     url = '{}/{cc}/{cc}.gif'.format(BASE_URL, cc=cc.lower())
     resp = requests.get(url)
     return resp.content
 
+
 def show(text):
     print(text, end=' ')
     sys.stdout.flush()
+
 
 def download_many(cc_list):
     for cc in sorted(cc_list):
@@ -33,6 +36,7 @@ def download_many(cc_list):
         save_flag(image, cc.lower() + '.gif')
 
     return len(cc_list)
+
 
 def main(download_many):
     t0 = time.time()
@@ -43,5 +47,4 @@ def main(download_many):
 
 
 if __name__ == "__main__":
-    main(download_many)  # 80s
-
+    main(download_many)  # 58
