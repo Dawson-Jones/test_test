@@ -3,13 +3,7 @@ import aiohttp
 from flags import BASE_URL, save_flag, show, main
 
 """
-async def get_flag(cc):
-    url = '{}/{cc}/{cc}.gif'.format(BASE_URL, cc=cc.lower())
-    async with aiohttp.ClientSession() as session:
-        # async with session.get(url) as resp:
-        resp = await session.get(url)
-        image = await resp.read()
-        return image
+await 表达式, async for 以及 async with 只能在协程函数体中使用。
 """
 
 

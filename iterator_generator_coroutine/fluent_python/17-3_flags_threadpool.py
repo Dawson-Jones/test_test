@@ -14,7 +14,7 @@ def download_one(cc):
 def download_many(cc_list):
     workers = min(MAX_WORKERS, len(cc_list))
     with futures.ThreadPoolExecutor(workers) as executor:
-        res = executor.map(download_one, sorted(cc_list))
+        res = executor.map(download_one, sorted(cc_list))  # .map() 返回一个生成器, 可以迭代获取各个 download_one 的返回值
 
     return len(list(res))
 
