@@ -20,7 +20,8 @@ def get_sample():
     return Sample1()
 
 
-with get_sample() as sample:
+# with 后面的表达式得到的结果是上下文管理器, 把值赋到目标变量上(as 子句) 是上下文管理器上调用 __enter__ 方法的就结果
+with get_sample() as sample: 
     time.sleep(3)
     # print("Sample: ", sample)
     print("Sample: ", sample.show())
