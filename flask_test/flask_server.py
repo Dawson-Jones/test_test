@@ -30,11 +30,6 @@ def test():
     return 'haha', 200
 
 
-@app.route('/plc')
-def test1():
-    return '1'
-
-
 @app.route('/pic_catcher/alive')
 def test2():
     return 'hello world'
