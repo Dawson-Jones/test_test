@@ -9,7 +9,6 @@ import argparse
 from collections import namedtuple
 from enum import Enum
 
-
 Result = namedtuple('Result', 'status data')
 
 HTTPStatus = Enum('Status', 'ok not_found error')
@@ -22,9 +21,9 @@ MAX_CONCUR_REQ = 1
 
 SERVERS = {
     'REMOTE': 'http://flupy.org/data/flags',
-    'LOCAL':  'http://localhost:8001/flags',
-    'DELAY':  'http://localhost:8002/flags',
-    'ERROR':  'http://localhost:8003/flags',
+    'LOCAL': 'http://localhost:8001/flags',
+    'DELAY': 'http://localhost:8002/flags',
+    'ERROR': 'http://localhost:8003/flags',
 }
 DEFAULT_SERVER = 'LOCAL'
 
@@ -70,7 +69,7 @@ def expand_cc_args(every_cc, all_cc, cc_args, limit):
     codes = set()
     A_Z = string.ascii_uppercase
     if every_cc:
-        codes.update(a+b for a in A_Z for b in A_Z)
+        codes.update(a + b for a in A_Z for b in A_Z)
     elif all_cc:
         with open(COUNTRY_CODES_FILE) as fp:
             text = fp.read()
@@ -78,38 +77,38 @@ def expand_cc_args(every_cc, all_cc, cc_args, limit):
     else:
         for cc in (c.upper() for c in cc_args):
             if len(cc) == 1 and cc in A_Z:
-                codes.update(cc+c for c in A_Z)
+                codes.update(cc + c for c in A_Z)
             elif len(cc) == 2 and all(c in A_Z for c in cc):
                 codes.add(cc)
             else:
                 msg = 'each CC argument must be A to Z or AA to ZZ.'
-                raise ValueError('*** Usage error: '+msg)
+                raise ValueError('*** Usage error: ' + msg)
     return sorted(codes)[:limit]
 
 
 def process_args(default_concur_req):
     server_options = ', '.join(sorted(SERVERS))
     parser = argparse.ArgumentParser(
-                description='Download flags for country codes. '
-                'Default: top 20 countries by population.')
+        description='Download flags for country codes. '
+                    'Default: top 20 countries by population.')
     parser.add_argument('cc', metavar='CC', nargs='*',
-                help='country code or 1st letter (eg. B for BA...BZ)')
+                        help='country code or 1st letter (eg. B for BA...BZ)')
     parser.add_argument('-a', '--all', action='store_true',
-                help='get all available flags (AD to ZW)')
+                        help='get all available flags (AD to ZW)')
     parser.add_argument('-e', '--every', action='store_true',
-                help='get flags for every possible code (AA...ZZ)')
+                        help='get flags for every possible code (AA...ZZ)')
     parser.add_argument('-l', '--limit', metavar='N', type=int,
-                help='limit to N first codes', default=sys.maxsize)
+                        help='limit to N first codes', default=sys.maxsize)
     parser.add_argument('-m', '--max_req', metavar='CONCURRENT', type=int,
-                default=default_concur_req,
-                help='maximum concurrent requests (default={})'
-                      .format(default_concur_req))
+                        default=default_concur_req,
+                        help='maximum concurrent requests (default={})'
+                        .format(default_concur_req))
     parser.add_argument('-s', '--server', metavar='LABEL',
-                default=DEFAULT_SERVER,
-                help='Server to hit; one of {} (default={})'
-                      .format(server_options, DEFAULT_SERVER))
+                        default=DEFAULT_SERVER,
+                        help='Server to hit; one of {} (default={})'
+                        .format(server_options, DEFAULT_SERVER))
     parser.add_argument('-v', '--verbose', action='store_true',
-                help='output detailed progress info')
+                        help='output detailed progress info')
     args = parser.parse_args()
     if args.max_req < 1:
         print('*** Usage error: --max_req CONCURRENT must be >= 1')

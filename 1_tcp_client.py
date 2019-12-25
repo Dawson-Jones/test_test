@@ -1,5 +1,6 @@
 import socket
 
+
 def main():
     # 1. 创建tcp的套接字
     tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -10,6 +11,7 @@ def main():
     tcp_socket.send(send_data.encode("utf-8"))
     # 4. 关闭套接字
     tcp_socket.close()
+
 
 if __name__ == "__main__":
     main()

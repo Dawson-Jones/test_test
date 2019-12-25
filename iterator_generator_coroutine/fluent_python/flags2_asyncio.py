@@ -22,7 +22,7 @@ class FetchError(Exception):  # <1>
         self.country_code = country_code
 
 
-async def get_flag(session, base_url, cc): # <2>
+async def get_flag(session, base_url, cc):  # <2>
     url = '{}/{cc}/{cc}.gif'.format(base_url, cc=cc.lower())
     async with session.get(url) as resp:
         if resp.status == 200:
@@ -53,6 +53,8 @@ async def download_one(session, cc, base_url, semaphore, verbose):  # <3>
         print(cc, msg)
 
     return Result(status, cc)
+
+
 # END FLAGS2_ASYNCIO_TOP
 
 # BEGIN FLAGS2_ASYNCIO_DOWNLOAD_MANY
@@ -61,7 +63,7 @@ async def downloader_coro(cc_list, base_url, verbose, concur_req):  # <1>
     semaphore = asyncio.Semaphore(concur_req)  # <2>
     async with aiohttp.ClientSession() as session:  # <8>
         to_do = [download_one(session, cc, base_url, semaphore, verbose)
-                for cc in sorted(cc_list)]  # <3>
+                 for cc in sorted(cc_list)]  # <3>
 
         to_do_iter = asyncio.as_completed(to_do)  # <4>
         if not verbose:
