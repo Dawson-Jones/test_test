@@ -2,6 +2,7 @@ import asyncio
 import itertools
 import sys
 
+
 @asyncio.coroutine
 def spin(msg):
     write, flush = sys.stdout.write, sys.stdout.flush
@@ -19,10 +20,12 @@ def spin(msg):
 
 @asyncio.coroutine
 def slow_function():
-    yield from asyncio.sleep(3)
+    yield from asyncio.sleep(30)
     return 42
 
 
+# cannot 'yield from' a coroutine object in a non-coroutine generator
+# 不能在一个 "非协程生成器中" yield from 一个协程对象
 @asyncio.coroutine
 def supervisor():
     spinner = asyncio.ensure_future(spin('thinking!'))

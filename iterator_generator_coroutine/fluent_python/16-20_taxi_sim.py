@@ -12,7 +12,6 @@ DEPARTURE_INTERVAL = 5
 Event = collections.namedtuple('Event', 'time proc action')
 
 
-# BEGIN TAXI_PROCESS
 def taxi_process(ident, trips, start_time=0):  # <1>
     """Yield to simulator issuing event at each state change"""
     time = yield Event(start_time, ident, 'leave garage')  # <2>
@@ -22,10 +21,8 @@ def taxi_process(ident, trips, start_time=0):  # <1>
 
     yield Event(time, ident, 'going home')  # <6>
     # end of taxi process # <7>
-# END TAXI_PROCESS
 
 
-# BEGIN TAXI_SIMULATOR
 class Simulator:
 
     def __init__(self, procs_map):
@@ -60,7 +57,6 @@ class Simulator:
         else:  # <16>
             msg = '*** end of simulation time: {} events pending ***'
             print(msg.format(self.events.qsize()))
-# END TAXI_SIMULATOR
 
 
 def compute_duration(previous_action):

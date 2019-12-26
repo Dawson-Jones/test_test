@@ -20,9 +20,11 @@ def spin(msg, signal):
             break
     write(' ' * len(status) + '\x08' * len(status))
 
+
 def slow_function():
     time.sleep(3)
     return 42
+
 
 def supervisor():
     signal = Signal()
@@ -33,6 +35,7 @@ def supervisor():
     signal.go = False
     spinner.join()
     return result
+
 
 def main():
     result = supervisor()
