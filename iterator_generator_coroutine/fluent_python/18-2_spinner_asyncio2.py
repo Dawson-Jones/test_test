@@ -2,36 +2,36 @@ import asyncio
 import itertools
 
 
-async def spin(msg):
+async def spin(msg):  # <1>
     for char in itertools.cycle('|/-\\'):
         status = char + ' ' + msg
         print(status, flush=True, end='\r')
         try:
-            await asyncio.sleep(.1)
-        except asyncio.CancelledError:
+            await asyncio.sleep(.1)  # <2>
+        except asyncio.CancelledError:  # <3>
             break
     print(' ' * len(status), end='\r')
 
 
-async def slow_function():
-    await asyncio.sleep(5)
+async def slow_function():  # <4>
+    # pretend waiting a long time for I/O
+    await asyncio.sleep(3)  # <5>
     return 42
 
 
-async def supervisor():
-    spinner = asyncio.ensure_future(spin('thinking!'))
-    print('spinner object: ', spinner)
-    result = await slow_function()
-    spinner.cancel()
+async def supervisor():  # <6>
+    # spinner = asyncio.ensure_future(spin('thinking!'))
+    spinner = asyncio.create_task(spin('thinking!'))  # <7>
+    print('spinner object:', spinner)  # <8>
+    result = await slow_function()  # <9>
+    spinner.cancel()  # <10>
     return result
 
 
 def main():
-    loop = asyncio.get_event_loop()
-    result = loop.run_until_complete(supervisor())
-    loop.close()
-    print('Answer: ', result)
+    result = asyncio.run(supervisor())  # <11>
+    print('Answer:', result)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
