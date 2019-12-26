@@ -24,7 +24,6 @@ def averager():
 # 委派生成器
 # @coroutine
 def grouper(results, key):
-    """-> *** 这个地方, 不用while True 会触发StopIteration异常, 不知道为什么   ***答案: 魔改总结"""
     """ Q: 子生成器抛出StopIteration异常, 会让委派生成器恢复运行, 并把value值返回给委派生成器, 那么最终value值到底给了哪一个委派生成器呢???
         A: 跟子生成器最近的那个 yield from 委派生成器, 因为恢复运行后, yield from 处理了这个异常, 并拿到了返回值
         每一个yield from 在结束的时候都会触发StopIteration异常, 所以用死循环不让他停止, 而yield from会处理StopIteration异常
