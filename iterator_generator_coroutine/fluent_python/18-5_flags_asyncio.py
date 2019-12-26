@@ -4,6 +4,13 @@ from flags import BASE_URL, save_flag, show, main
 
 """
 await 表达式, async for 以及 async with 只能在协程函数体中使用。
+await 表达式 用来获取协程运行的结果
+await 相比 yield from 多了一个步骤, 验证它的 argument, await only accepts an awaitable:
+    1) 原生协程对象.
+    2) types.coroutine() 装饰的函数返回的 -> 协程生成器对象
+    3) 一个具有 __await__ 方法的
+
+每一个 yield from 链, 最后都是一个 yield 
 """
 
 
