@@ -44,11 +44,10 @@ def main(data: dict):
         for value in values:
             group.send(value)
 
-        # ----------                 # \
-        # try:                       # -
+        # try:
         group.send(None)  # -> 如果使用except 捕获异常, 可以在grouper不使用 whlie
-        # except StopIteration:      # -
-        #     pass                   # /
+        # except StopIteration:
+        #     pass
 
         """
         不需要这一句, 是因为, 外层for循环重新迭代的时候, 新建grouper实例, 绑定到了原来的group变量上, 
@@ -75,10 +74,3 @@ data = {
 
 if __name__ == "__main__":
     main(data)
-    """
-    10 girls averaging 42.04kg
-    10 girls averaging 1.31m
-     9 boys  averaging 40.42kg
-     9 boys  averaging 1.39m
-
-    """

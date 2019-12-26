@@ -1,0 +1,3 @@
+- yield from 其实就是 yield 的语法糖  
+- 主程序通过yield from 直接和yield 打通 而 yield 协程并不会堵塞 所以导致主程序可以在循环中遍历多个yield函数  
+- yield生成器的返回值 作为 yield from 的值 -> 这样做的原因是 可以像调用普通函数一样调用一个生成器  

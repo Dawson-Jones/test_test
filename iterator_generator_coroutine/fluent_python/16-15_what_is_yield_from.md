@@ -1,6 +1,8 @@
-RESULT = yield from EXPR
+> yield from 语法初衷是为了能够分离一段在yield中的代码   
 
-# 等价于
+RESULT = yield from EXPR  
+
+# 等价于  
 
 ```python
 
@@ -10,7 +12,7 @@ try:
 except StopIteration as _e:
     _r = _e.value
 else:
-    while 1**:
+    while 1:
         try:
             _s = yield _y
         except GeneratorExit as _e:
