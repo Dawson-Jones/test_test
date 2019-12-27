@@ -54,7 +54,6 @@ def main(data: dict):
         前一个grouper实例(以及它创建的尚未终止的averager子生成器实例)被垃圾回收
         """
         # group.close()
-
     report(results)
 
 
@@ -65,12 +64,11 @@ def report(results: dict):
         print('{:2} {:5} averaging {:.2f}{}'.format(result.count, group, result.average, unit))
 
 
-data = {
-    'girls;kg': [40.9, 38.5, 44.3],
-    'girls;m': [1.6, 1.51, 1.4],
-    'boys;kg': [39.0, 40.8, 43.2],
-    'boys;m': [1.38, 1.5, 1.32],
-}
-
 if __name__ == "__main__":
+    data = {
+        'girls;kg': [40.9, 38.5, 44.3],
+        'girls;m': [1.6, 1.51, 1.4],
+        'boys;kg': [39.0, 40.8, 43.2],
+        'boys;m': [1.38, 1.5, 1.32],
+    }
     main(data)

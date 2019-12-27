@@ -19,17 +19,30 @@ async def slow_function():  # <4>
     return 42
 
 
-async def supervisor():  # <6>
-    # spinner = asyncio.ensure_future(spin('thinking!'))
-    spinner = asyncio.create_task(spin('thinking!'))  # <7>
-    print('spinner object:', spinner)  # <8>
-    result = await slow_function()  # <9>
-    spinner.cancel()  # <10>
+# async def supervisor():  # <6>
+#     # spinner = asyncio.ensure_future(spin('thinking!'))
+#     spinner = asyncio.create_task(spin('thinking!'))  # <7>
+#     print('spinner object:', spinner)  # <8>
+#     result = await slow_function()  # <9>
+#     spinner.cancel()  # <10>
+#     return result
+
+
+async def main1():
+    task = asyncio.create_task(spin('thinking!'))
+    print('spinner object:', task)  # <8>
+    return await main2(task)
+
+
+async def main2(future):
+    result = await slow_function()
+    future.cancel()
     return result
 
 
 def main():
-    result = asyncio.run(supervisor())  # <11>
+    # result = asyncio.run(supervisor())  # <11>
+    result = asyncio.run(main1())  # <11>
     print('Answer:', result)
 
 
