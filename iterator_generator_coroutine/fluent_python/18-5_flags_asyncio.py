@@ -32,7 +32,7 @@ async def download_one(cc):
 def download_many(cc_list):
     loop = asyncio.get_event_loop()
     to_do = [download_one(cc) for cc in sorted(cc_list)]
-    wait_coro = asyncio.wait(to_do)
+    wait_coro = asyncio.wait(to_do)  # <coroutine object wait at 0x7fd3f93a8c40>
     res, _ = loop.run_until_complete(wait_coro)
     loop.close()
 

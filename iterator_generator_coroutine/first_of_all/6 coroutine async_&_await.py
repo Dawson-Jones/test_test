@@ -7,15 +7,11 @@ async def do_some_work(x):
     return f'Done after {x}s'
 
 
-coroutine1 = do_some_work(1)
-coroutine2 = do_some_work(2)
-
-tasks = [
-    asyncio.ensure_future(coroutine1),
-    asyncio.ensure_future(coroutine2),
-]
-
 loop = asyncio.get_event_loop()
+tasks = [
+    asyncio.ensure_future(do_some_work(1)),
+    asyncio.ensure_future(do_some_work(2)),
+]
 loop.run_until_complete(asyncio.wait(tasks))
 
 # result
