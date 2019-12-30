@@ -5,10 +5,10 @@ import time
 
 
 async def send_url(page_num):
-    print('pend to send', page_num)
     url = f'http://xidong.net/List000/Catalog_{page_num}_T1.html'
     async with aiohttp.ClientSession() as session:  # <8>
-        print('session', page_num)
+        # print('session', page_num)
+        print('pend to send', page_num)
         async with session.get(url) as resp:
             if resp.status == 200:
                 print('get:', page_num)

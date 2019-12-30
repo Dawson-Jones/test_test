@@ -80,13 +80,22 @@ class TiebaSpider(object):
             67, 97, 109, 117, 123, 127, 135, 141, 157, 169, 174, 66, 93, 5, 185
         ]
         url_list = [self.url.format(i) for i in url_li]
-        with futures.ThreadPoolExecutor(5) as executor:
-            responses = executor.map(self.parse_url, url_list)
-            for response in responses:
-                if response.status_code == 200:
-                    print('get')
-                else:
-                    print('not get')
+
+        # with futures.ThreadPoolExecutor(5) as executor:
+        #     responses = executor.map(self.parse_url, url_list)
+        #     for response in responses:
+        #         if response.status_code == 200:
+        #             print('get')
+        #         else:
+        #             print('not get')
+
+        for i in url_list:
+            response = self.parse_url(i)
+            if response.status_code == 200:
+                print('get')
+            else:
+                print('not get')
+
         print(len(url_li))
 
 
