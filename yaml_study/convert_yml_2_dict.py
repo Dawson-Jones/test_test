@@ -2,6 +2,7 @@ import yaml
 
 with open("./docker-compose.yaml") as f:
     dct = yaml.load(f)
+    yaml.dump()
 
 
 """
