@@ -11,8 +11,8 @@ a = A("jdq")
 print(A.li)  # ['jdq']
 print(a.li)  # ['jdq']
 print(a.li is A.li)  # True
-b = A("dobby")
-print(b.li)  # ['jdq', 'dobby']
+b = A("dawson")
+print(b.li)  # ['jdq', 'dawson']
 
 print(A.var)  # None
 print(a.var)  # var
