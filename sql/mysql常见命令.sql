@@ -1,16 +1,22 @@
--- 1. 查看当前所有的数据库
+-- 1. 创建数据库
+create database python4 charset=utf8;
+
+-- 2. 删除数据库
+drop database 数据库名;
+
+-- 3. 查看当前所有的数据库
 	show databases;
 
--- 2. 打开指定的库
+-- 4. 打开指定的库
 	use 库名;
 
--- 3. 查看当前库的所有表
+-- 5. 查看当前库的所有表
 	show tables;
 
--- 4. 查看其他库的所有表
+-- 6. 查看其他库的所有表
 	show tables from 库名;
 
--- 5. 创建表
+-- 7. 创建表
 	create table 表名(
 	列名 列类型,
 	列名 列类型
@@ -20,10 +26,10 @@
 		name varchar
 		);
 
--- 6. 查看表结构
+-- 8. 查看表结构
 	desc 表名;
 
--- 7. 查看服务器版本
+-- 9. 查看服务器版本
 	-- 方式一: 登录到MySQL服务端
 		select version();
 	-- 方式二: 没有登录到MySQL
@@ -44,11 +50,6 @@ INSERT INTO 表名 VALUES(0, "贾冬青", 22, 187.50, "男", 0, 0) ;
 -- 显示时间
 select now();
 
--- 创建数据库
-create database python4 charset=utf8;
-
--- 删除数据库
-drop database 数据库名;
 
 -- 实例
 -- 1. 创建数据库, 编码utf-8, 名为mysqkpython
