@@ -29,7 +29,6 @@ def service_client(new_socket, request):
             file_name = "/index.html"
 
     # 2. 返回http格式的数据，给浏览器
-
     try:
         f = open("./html" + file_name, "rb")
     except:
