@@ -115,6 +115,7 @@ SELECT * FROM students;
 	UPDATE students SET age=21;
 	UPDATE students SET birth=1996-01-15;
 	UPDATE students SET age=22, gender=1 WHERE id=3;
+	UPDATE students SET age=age+2 where id=1;
 
 -- 查看指定信息
 	SELECT * FROM students WHERE NAME="小乔";

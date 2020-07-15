@@ -169,7 +169,7 @@
         -- 计算男性人数
         SELECT count(*) FROM students WHERE gender=1;
         SELECT gender, count(*) FROM students where gender=1 GROUP BY gender;
-        查看男性分组中的人的名称， 年龄和id
+        -- 查看男性分组中的人的名称， 年龄和id
         SELECT gender, GROUP_concat(name, " 年龄:", age, " id:", id) FROM students where gender=1 GROUP BY gender;
 
     -- HAVING 过滤

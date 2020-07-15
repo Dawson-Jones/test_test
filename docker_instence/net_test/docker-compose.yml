@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  net_test:
+    image: net_test
+    volumes:
+    - ./:/usr/src/app
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python test.py

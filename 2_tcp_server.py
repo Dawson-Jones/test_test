@@ -42,6 +42,7 @@ def main():
 
     !!!: 注意这里还有一个空行
     """
+    # 在 post 请求中, header 和 body 中间有一个空行, 而 body 的最后是没有空行的
 
 
 if __name__ == "__main__":
