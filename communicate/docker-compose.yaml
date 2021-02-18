@@ -1,0 +1,27 @@
+version: "3.8"
+
+
+services:
+  tcp_server:
+    image: self_py_img
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 33445
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python 2_tcp_server.py
+
+  tcp_client:
+    image: self_py_img
+    depends_on:
+      - tcp_server
+    volumes:
+      - ./:/usr/src/app
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python 1_tcp_client.py

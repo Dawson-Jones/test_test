@@ -27,9 +27,6 @@ class S(object):
                     s_match.count += 1
 
 
-
-
-
 if __name__ == '__main__':
     s = S("i have a apple, i have a pen. uhh, apple pen")
     str_li = ["apple", "pen", "applee"]

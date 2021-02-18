@@ -4,7 +4,7 @@ services:
   net_test:
     image: net_test
     volumes:
-    - ./:/usr/src/app
+      - ./:/usr/src/app
     command:
       - /bin/sh
       - -c
