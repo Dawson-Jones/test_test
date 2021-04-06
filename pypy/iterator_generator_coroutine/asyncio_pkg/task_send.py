@@ -20,7 +20,7 @@ async def send_http(body: str):
 
 
 def async_send():
-    with open("./task_sche.json") as f:
+    with open("task_sche.json") as f:
         obj = json.load(f)
 
     import time
@@ -50,7 +50,7 @@ def async_send():
     print(time.time() - st)
 
 def common_send():
-    with open("./task_sche.json") as f:
+    with open("task_sche.json") as f:
         obj = json.load(f)
 
     for task in obj["RECORDS"]:

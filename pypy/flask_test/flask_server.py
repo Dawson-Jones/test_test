@@ -18,10 +18,18 @@ def test():
     return 'haha', 200
 
 
-@app.route('/pic_catcher/alive')
+@app.route('/global/control/server_maps')
 def test2():
-    return 'hello world'
+    value = [
+        {
+            "ip": "47.110.92.112",
+            "port": 62345
+        }
+    ]
+    print("-----------")
+    print(request.url)
+    return jsonify(value)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8090)
+    app.run(host="0.0.0.0", debug=True, port=62242)
