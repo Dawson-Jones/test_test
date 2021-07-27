@@ -36,8 +36,11 @@ drop database 数据库名;
 		mysql --version
 		mysql -V
 
-INSERT INTO 表名 VALUES(0, "贾冬青", 22, 187.50, "男", 0, 0) ;
-		
+-- 10. 设置自增主键id的起始值
+	-- 修改user表，主键自增从100开始
+	alter table user AUTO_INCREMENT=10000;
+
+
 -- mysql的语法规范
 	-- 1. 不区分大小写, 但建议关键字大写, 表名/列名小写
 	-- 2. 每条命令用分号结尾
@@ -77,7 +80,12 @@ select now();
 -- 添加一列信息
 	INSERT INTO students 
 	VALUES
-	(0, "贾冬青", 22, 187.50, "男", 0, 0) ;
+	(0, "贾冬青", 22, 187.50, "男", 0, 0);
+	-- 或
+	INSERT INTO students
+	(id, name, age, height, gender, cls_id, is_delete)
+	VALUES
+	(0, "贾冬青"， 22， 187.50, "男", 0, 0);
  
  -- 查看表
 	SELECT * FROM students;
