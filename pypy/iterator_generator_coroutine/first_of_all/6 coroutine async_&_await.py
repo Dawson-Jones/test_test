@@ -1,10 +1,12 @@
 import asyncio
+from time import *
 
 
 async def do_some_work(x):
     print('waiting: ', x)
+    # sleep(x)
     await asyncio.sleep(x)
-    return f'Done after {x}s'
+    return f'Done after {x}self'
 
 
 loop = asyncio.get_event_loop()

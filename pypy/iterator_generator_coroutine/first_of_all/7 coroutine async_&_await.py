@@ -5,7 +5,7 @@ import asyncio
 async def do_some_work(x):
     print('waiting', x)
     await asyncio.sleep(x)
-    return f'Done after {x}s'
+    return f'Done after {x}self'
 
 
 # 外部协程函数
